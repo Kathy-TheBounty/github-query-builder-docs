@@ -253,13 +253,13 @@
         <td><code>language:</code></td>
         <td>Primary language of public repos</td>
         <td><code>language:python</code></td>
-        <td>OR implicite si répété</td>
+        <td>OR implicit if repeated</td>
       </tr>
       <tr>
         <td><code>location:</code></td>
         <td>Profile location field (declarative)</td>
         <td><code>location:Paris</code></td>
-        <td>OR implicite si répété</td>
+        <td>OR implicit if repeated</td>
       </tr>
       <tr>
         <td><code>followers:</code></td>
@@ -269,9 +269,9 @@
       </tr>
       <tr>
         <td><code>repos:</code></td>
-        <td>Nombre de repos publics</td>
+        <td>Number of public repos</td>
         <td><code>repos:>10</code> <code>repos:5..50</code></td>
-        <td>Inclut les forks</td>
+        <td>Includes forks</td>
       </tr>
       <tr>
         <td><code>created:</code></td>
@@ -293,15 +293,15 @@
       </tr>
       <tr>
         <td><code>in:email</code></td>
-        <td>Email public (partie locale)</td>
+        <td>Public email (local part) - before the @</td>
         <td><code>dataiku in:email</code></td>
-        <td>Pas le domaine</td>
+        <td>Not the domain</td>
       </tr>
       <tr>
         <td><code>type:</code></td>
         <td>Account type</td>
         <td><code>type:user</code></td>
-        <td>Exclut les orgs</td>
+        <td>Excludes organizations</td>
       </tr>
     </table>
   </div>
@@ -348,17 +348,17 @@
   <div class="table-wrap">
     <table>
       <tr><th>Qualifier</th><th>Example</th><th>Notes</th></tr>
-      <tr><td><code>language:</code></td><td><code>language:python language:go</code></td><td>Langage principal (Linguist). OR implicite si répété.</td></tr>
-      <tr><td><code>topic:</code></td><td><code>topic:machine-learning</code></td><td>Topic exact assigné au repo. Différent de <code>in:topics</code>.</td></tr>
-      <tr><td><code>stars:</code></td><td><code>stars:>100</code> <code>stars:50..500</code></td><td>Plage plus utile que minimum seul pour le sourcing</td></tr>
-      <tr><td><code>forks:</code></td><td><code>forks:>20</code></td><td>Proxy indirect de communauté</td></tr>
-      <tr><td><code>pushed:</code></td><td><code>pushed:>2024-01-01</code></td><td>Dernier commit sur <em>n'importe quelle</em> branche</td></tr>
+      <tr><td><code>language:</code></td><td><code>language:python language:go</code></td><td>Main language (Linguist). OR implicit if repeated.</td></tr>
+      <tr><td><code>topic:</code></td><td><code>topic:machine-learning</code></td><td>Exact topic assigned to the repo. Different from <code>in:topics</code>.</td></tr>
+      <tr><td><code>stars:</code></td><td><code>stars:>100</code> <code>stars:50..500</code></td><td>More useful than minimum alone for sourcing</td></tr>
+      <tr><td><code>forks:</code></td><td><code>forks:>20</code></td><td>Indirect proxy for community</td></tr>
+      <tr><td><code>pushed:</code></td><td><code>pushed:>2024-01-01</code></td><td>Last commit in <em>any</em> branch</td></tr>
       <tr><td><code>created:</code></td><td><code>created:>2022-01-01</code></td><td>Repo creation date</td></tr>
       <tr><td><code>archived:false</code></td><td><code>archived:false</code></td><td><strong>Essential</strong> — always include</td></tr>
-      <tr><td><code>-fork:true</code></td><td><code>-fork:true</code></td><td>Exclure les forks pour projets originaux</td></tr>
-      <tr><td><code>license:</code></td><td><code>license:mit</code></td><td>Projets open source sérieux</td></tr>
-      <tr><td><code>user:</code> / <code>org:</code></td><td><code>org:huggingface</code></td><td>Cibler une org — OR implicite si répété</td></tr>
-      <tr><td><code>good-first-issues:>n</code></td><td><code>good-first-issues:>3</code></td><td>Signal de communauté active</td></tr>
+      <tr><td><code>-fork:true</code></td><td><code>-fork:true</code></td><td>Exclude forks for original projects</td></tr>
+      <tr><td><code>license:</code></td><td><code>license:mit</code></td><td>Serious open source projects</td></tr>
+      <tr><td><code>user:</code> / <code>org:</code></td><td><code>org:huggingface</code></td><td>Targeting an org — implicit OR if repeated</td></tr>
+      <tr><td><code>good-first-issues:>n</code></td><td><code>good-first-issues:>3</code></td><td>Active Community Signal</td></tr>
     </table>
   </div>
 
@@ -385,7 +385,7 @@
       <tr><th>Operator</th><th>Syntax</th><th>Works on</th><th>Example</th></tr>
       <tr>
         <td>Implicit AND</td>
-        <td>Espace entre qualifiers différents</td>
+        <td>Space between different qualifiers</td>
         <td>All qualifiers</td>
         <td><code>language:python location:France</code></td>
       </tr>
@@ -472,7 +472,7 @@ Intersection A ∩ B  → profiles present in both lists</code>
   <h2>6. Cheat Sheet — Complete Reference</h2>
 
   <!-- ══════════════════════════════════════════════════════
-       BLOC 1 : MOTS-CLÉS vs QUALIFIERS
+       BLOC 1 : KEYWORDS vs QUALIFIERS
   ══════════════════════════════════════════════════════ -->
   <h3>Keywords vs Qualifiers — the fundamental difference</h3>
   <div class="table-wrap">
@@ -521,14 +521,14 @@ Intersection A ∩ B  → profiles present in both lists</code>
   </div>
 
   <!-- ══════════════════════════════════════════════════════
-       BLOC 2 : LOGIQUE MOTS-CLÉS
+       BLOC 2 : KEYWORDS LOGIC
   ══════════════════════════════════════════════════════ -->
   <h3>Logic — keywords (Users &amp; Repos)</h3>
   <div class="table-wrap">
     <table>
       <tr><th>Syntax</th><th>Behavior</th><th>Example</th></tr>
       <tr>
-        <td><code>mot</code></td>
+        <td><code>Keyword</code></td>
         <td>Single word — searches the term in default fields</td>
         <td><code>developer</code></td>
       </tr>
@@ -538,7 +538,7 @@ Intersection A ∩ B  → profiles present in both lists</code>
         <td><code>"machine learning engineer"</code></td>
       </tr>
       <tr>
-        <td><code>"mot1" "mot2"</code></td>
+        <td><code>"Keyword1" "Keyword2"</code></td>
         <td>Implicit AND — both expressions must be present</td>
         <td><code>"backend" "python"</code></td>
       </tr>
@@ -553,12 +553,12 @@ Intersection A ∩ B  → profiles present in both lists</code>
         <td><code>"developer" NOT "junior" NOT "intern"</code></td>
       </tr>
       <tr>
-        <td><code>mot in:champ</code></td>
+        <td><code>Keyword in:field</code></td>
         <td>Restricts search to a specific field (users: login/name/email — repos: name/description/topics/readme)</td>
         <td><code>python in:login</code> · <code>LangChain in:readme</code></td>
       </tr>
       <tr>
-        <td><code>"A" OR "B" in:champ</code></td>
+        <td><code>"A" OR "B" in:field</code></td>
         <td>OR between keywords + targeting a specific field</td>
         <td><code>"llm" OR "rag" in:name,description</code></td>
       </tr>
@@ -592,7 +592,7 @@ Intersection A ∩ B  → profiles present in both lists</code>
         <td>Excludes PHP and Jupyter Notebook</td>
       </tr>
       <tr>
-        <td><strong>Range numérique</strong></td>
+        <td><strong>Numerical range</strong></td>
         <td><code>qualifier:min..max</code></td>
         <td><code>stars:50..500</code> · <code>followers:20..200</code></td>
         <td>Inclusive range</td>
@@ -616,19 +616,19 @@ Intersection A ∩ B  → profiles present in both lists</code>
         <td>Specific period (ISO 8601 format)</td>
       </tr>
       <tr>
-        <td><strong>⛔ Interdit</strong></td>
+        <td><strong>⛔ What doesn't work</strong></td>
         <td>OR between different qualifiers</td>
         <td><code>location:Paris OR language:python</code></td>
         <td>Doesn't work → 2 separate queries</td>
       </tr>
       <tr>
-        <td><strong>⛔ Interdit</strong></td>
+        <td><strong>⛔ What doesn't work</strong></td>
         <td>AND between same qualifiers</td>
         <td><code>language:python AND language:go</code></td>
         <td>Doesn't work → intersect 2 lists</td>
       </tr>
       <tr>
-        <td><strong>⛔ Interdit</strong></td>
+        <td><strong>⛔ What doesn't work</strong></td>
         <td>Parentheses</td>
         <td><code>(language:python OR language:go) AND stars:>100</code></td>
         <td>Not supported → rewrite with implicit logic</td>
@@ -646,7 +646,7 @@ Intersection A ∩ B  → profiles present in both lists</code>
       <tr><th>Qualifier</th><th>Targeted field</th><th>Syntax</th><th>Logic</th></tr>
       <tr><td><code>type:</code></td><td>Account type</td><td><code>type:user</code> · <code>type:org</code></td><td>Fixed AND</td></tr>
       <tr><td><code>language:</code></td><td>Primary language of public repos</td><td><code>language:python</code> · <code>language:python language:go</code></td><td>OR if repeated</td></tr>
-      <tr><td><code>location:</code></td><td>Champ location du profil (déclaratif, non normalisé)</td><td><code>location:Paris</code> · <code>location:"Île-de-France"</code></td><td>OR if repeated</td></tr>
+      <tr><td><code>location:</code></td><td>Profile location field (declarative, non-standardized)</td><td><code>location:Paris</code> · <code>location:"Île-de-France"</code></td><td>OR if repeated</td></tr>
       <tr><td><code>followers:</code></td><td>Number of followers</td><td><code>followers:>50</code> · <code>followers:20..200</code></td><td>Fixed AND — ranges</td></tr>
       <tr><td><code>repos:</code></td><td>Number of public repos (forks included)</td><td><code>repos:>10</code> · <code>repos:5..50</code></td><td>Fixed AND — ranges</td></tr>
       <tr><td><code>created:</code></td><td>Account creation date</td><td><code>created:>2019-01-01</code> · <code>created:2018..2022</code></td><td>Fixed AND</td></tr>
@@ -698,7 +698,7 @@ Intersection A ∩ B  → profiles present in both lists</code>
       <tr><td>Private repos</td><td>Never returned</td><td>—</td></tr>
       <tr><td>Number of contributors</td><td>No native qualifier</td><td>Proxy: <code>forks:>n</code> + <code>good-first-issues:>n</code></td></tr>
       <tr><td>Last commit on default branch</td><td>No native qualifier</td><td><code>pushed:</code> (all branches) is the only option</td></tr>
-      <tr><td>Wildcard / Regex</td><td>Non supportés</td><td>List variants explicitly</td></tr>
+      <tr><td>Wildcard / Regex</td><td>Not supported</td><td>List variants explicitly</td></tr>
       <tr><td>API rate limit without token</td><td>10 req/min</td><td>Use a GitHub Bearer token</td></tr>
     </table>
   </div>
