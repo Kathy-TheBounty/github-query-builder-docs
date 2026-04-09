@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide — GitHub Search For Recruiters</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #24292f;
+      background: #fff;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 32px 24px 64px;
+    }
+
+    /* ── Header ── */
+    .guide-header {
+      border-bottom: 2px solid #0969da;
+      padding-bottom: 20px;
+      margin-bottom: 32px;
+    }
+    .guide-header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0969da;
+      margin-bottom: 6px;
+    }
+    .guide-header p {
+      color: #57606a;
+      font-size: 13px;
+    }
+
+    /* ── Navigation ── */
+    .toc {
+      background: #f6f8fa;
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 36px;
+    }
+    .toc-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      color: #57606a;
+      margin-bottom: 10px;
+    }
+    .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 20px; }
+    .toc a {
+      font-size: 13px;
+      color: #0969da;
+      text-decoration: none;
+    }
+    .toc a:hover { text-decoration: underline; }
+
+    /* ── Sections ── */
+    section { margin-bottom: 40px; }
+    h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #24292f;
+      border-bottom: 1px solid #d0d7de;
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+      scroll-margin-top: 16px;
+    }
+    h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #24292f;
+      margin: 20px 0 10px;
+    }
+    p { margin-bottom: 10px; color: #24292f; }
+
+    /* ── Tables ── */
+    .table-wrap { overflow-x: auto; margin-bottom: 16px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th {
+      background: #f6f8fa;
+      text-align: left;
+      padding: 8px 12px;
+      font-weight: 600;
+      border: 1px solid #d0d7de;
+      white-space: nowrap;
+    }
+    td {
+      padding: 7px 12px;
+      border: 1px solid #d0d7de;
+      vertical-align: top;
+    }
+    tr:nth-child(even) td { background: #f6f8fa; }
+
+    /* ── Code ── */
+    code {
+      font-family: 'SFMono-Regular', Consolas, monospace;
+      font-size: 12px;
+      background: #f6f8fa;
+      border: 1px solid #d0d7de;
+      border-radius: 4px;
+      padding: 1px 5px;
+      color: #0969da;
+    }
+    .query {
+      display: block;
+      font-family: 'SFMono-Regular', Consolas, monospace;
+      font-size: 12px;
+      background: #0d1117;
+      color: #e6edf3;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin: 8px 0 12px;
+      line-height: 1.7;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    /* ── Callouts ── */
+    .tip, .warn {
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .tip {
+      background: #ddf4ff;
+      border-left: 3px solid #0969da;
+      color: #0550ae;
+    }
+    .warn {
+      background: #fff8c5;
+      border-left: 3px solid #9a6700;
+      color: #7d4e00;
+    }
+    .tip strong, .warn strong { display: inline; }
+
+    /* ── Cheat sheet ── */
+    .cheat { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+    .cheat-item {
+      background: #f6f8fa;
+      border: 1px solid #d0d7de;
+      border-radius: 6px;
+      padding: 8px 12px;
+    }
+    .cheat-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: #57606a;
+      margin-bottom: 3px;
+    }
+    .cheat-code {
+      font-family: 'SFMono-Regular', Consolas, monospace;
+      font-size: 11px;
+      color: #0969da;
+      word-break: break-all;
+    }
+
+    @media (max-width: 560px) {
+      .cheat { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="guide-header">
+  <h1>GitHub Search — Guide For Recruiters</h1>
+  <p>Qualifiers · Boolean Logic · Users & Repos Search · Limits & Workarounds</p>
+</div>
+
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ul>
+    <li><a href="#fonctionnement">1. How it works</a></li>
+    <li><a href="#users">2. Users Search</a></li>
+    <li><a href="#repos">3. Repos Search</a></li>
+    <li><a href="#booleens">4. Boolean Logic</a></li>
+    <li><a href="#limites">5. Limits & Workarounds</a></li>
+    <li><a href="#cheatsheet">6. Cheat sheet</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section id="fonctionnement">
+  <h2>1. How it works</h2>
+
+  <h3>Keywords vs Qualifiers</h3>
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>Free keywords</th>
+        <th>Qualifiers <code>qualifier:value</code></th>
+      </tr>
+      <tr>
+        <td>Search across multiple fields simultaneously</td>
+        <td>Target one specific field only</td>
+      </tr>
+      <tr>
+        <td>Support explicit <code>AND</code>, <code>OR</code>, <code>NOT</code></td>
+        <td>OR via repetition, NOT via <code>-qualifier:val</code></td>
+      </tr>
+      <tr>
+        <td><code>"machine learning"</code> → exact phrase</td>
+        <td><code>language:python</code> → specific field</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="tip">
+    <strong>💡 Golden rule:</strong> Explicit <code>AND</code>/<code>OR</code>/<code>NOT</code> only work between free keywords. For qualifiers, everything is implicit — space = AND, repetition = OR, dash = NOT.
+  </div>
+
+  <h3>Technical Limits (Users & Repos)</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Limit</th><th>Value</th></tr>
+      <tr><td>Max query length</td><td>256 characters</td></tr>
+      <tr><td>Explicit boolean operators</td><td>5 max (AND/OR/NOT)</td></tr>
+      <tr><td>Max results per query</td><td>1,000 (10 pages × 100)</td></tr>
+      <tr><td>Parentheses</td><td>Not supported</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section id="users">
+  <h2>2. Users Search</h2>
+
+  <h3>What keywords search</h3>
+  <p>A keyword without qualifier searches simultaneously in: <strong>username</strong>, <strong>display name</strong>, <strong>public email</strong> (local part only), <strong>profile bio</strong>.</p>
+
+  <div class="tip">
+    <strong>💡</strong> The bio is the richest field for sourcing. Devs list their stack, title, and specialties there.
+  </div>
+
+  <h3>Available qualifiers</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Qualifier</th><th>Targeted field</th><th>Example</th><th>Notes</th></tr>
+      <tr>
+        <td><code>language:</code></td>
+        <td>Primary language of public repos</td>
+        <td><code>language:python</code></td>
+        <td>OR implicite si répété</td>
+      </tr>
+      <tr>
+        <td><code>location:</code></td>
+        <td>Profile location field (declarative)</td>
+        <td><code>location:Paris</code></td>
+        <td>OR implicite si répété</td>
+      </tr>
+      <tr>
+        <td><code>followers:</code></td>
+        <td>Number of followers</td>
+        <td><code>followers:>50</code> <code>followers:20..200</code></td>
+        <td>Supporte ranges</td>
+      </tr>
+      <tr>
+        <td><code>repos:</code></td>
+        <td>Nombre de repos publics</td>
+        <td><code>repos:>10</code> <code>repos:5..50</code></td>
+        <td>Inclut les forks</td>
+      </tr>
+      <tr>
+        <td><code>created:</code></td>
+        <td>Account creation date</td>
+        <td><code>created:>2019-01-01</code></td>
+        <td>Format ISO YYYY-MM-DD</td>
+      </tr>
+      <tr>
+        <td><code>in:login</code></td>
+        <td>Username (partial search)</td>
+        <td><code>python in:login</code></td>
+        <td>Keyword + in:</td>
+      </tr>
+      <tr>
+        <td><code>in:name</code></td>
+        <td>Nom affiché</td>
+        <td><code>Sophie in:name</code></td>
+        <td>Keyword + in:</td>
+      </tr>
+      <tr>
+        <td><code>in:email</code></td>
+        <td>Email public (partie locale)</td>
+        <td><code>dataiku in:email</code></td>
+        <td>Pas le domaine</td>
+      </tr>
+      <tr>
+        <td><code>type:</code></td>
+        <td>Account type</td>
+        <td><code>type:user</code></td>
+        <td>Exclut les orgs</td>
+      </tr>
+    </table>
+  </div>
+
+  <h3>Location — the blind spot</h3>
+  <p>The <code>location:</code> field is entirely declarative. A developer in Paris may write "Paris", "75", "Île-de-France", "Greater Paris Area" or nothing at all.</p>
+
+  <div class="warn">
+    <strong>⚠️</strong> The only way to cover an area exhaustively: run multiple queries in parallel with all variants — and aggregate the results.
+  </div>
+
+  <code class="query">type:user language:python location:Paris location:"Île-de-France" location:France location:75 followers:>20</code>
+
+  <h3>Users query examples</h3>
+  <code class="query">"ML engineer" language:python location:Paris location:France followers:>20 repos:>5 NOT "junior"</code>
+  <code class="query">"tech lead" OR "engineering manager" location:France language:typescript repos:>5</code>
+  <code class="query">"open to work" "python" location:Paris language:python</code>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section id="repos">
+  <h2>3. Repos Search</h2>
+
+  <h3>What keywords search by default</h3>
+  <p>Without <code>in:</code>, a keyword searches <strong>name + description + topics</strong>. Not the README.</p>
+
+  <h3>The <code>in:</code> qualifier</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Qualifier</th><th>Searches in</th><th>Example</th></tr>
+      <tr><td><code>in:name</code></td><td>Repo name only</td><td><code>django in:name</code></td></tr>
+      <tr><td><code>in:description</code></td><td>Description only</td><td><code>machine learning in:description</code></td></tr>
+      <tr><td><code>in:topics</code></td><td>GitHub topics of the repo</td><td><code>python in:topics</code></td></tr>
+      <tr><td><code>in:readme</code></td><td>README file content</td><td><code>LangChain in:readme</code></td></tr>
+      <tr><td><code>in:name,description</code></td><td>Name OR description</td><td><code>react in:name,description</code></td></tr>
+    </table>
+  </div>
+
+  <div class="tip">
+    <strong>💡 in:readme</strong> is the only way to search repo content. Very powerful for finding frameworks not listed as a topic. Slower than other fields.
+  </div>
+
+  <h3>Available qualifiers</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Qualifier</th><th>Example</th><th>Notes</th></tr>
+      <tr><td><code>language:</code></td><td><code>language:python language:go</code></td><td>Langage principal (Linguist). OR implicite si répété.</td></tr>
+      <tr><td><code>topic:</code></td><td><code>topic:machine-learning</code></td><td>Topic exact assigné au repo. Différent de <code>in:topics</code>.</td></tr>
+      <tr><td><code>stars:</code></td><td><code>stars:>100</code> <code>stars:50..500</code></td><td>Plage plus utile que minimum seul pour le sourcing</td></tr>
+      <tr><td><code>forks:</code></td><td><code>forks:>20</code></td><td>Proxy indirect de communauté</td></tr>
+      <tr><td><code>pushed:</code></td><td><code>pushed:>2024-01-01</code></td><td>Dernier commit sur <em>n'importe quelle</em> branche</td></tr>
+      <tr><td><code>created:</code></td><td><code>created:>2022-01-01</code></td><td>Repo creation date</td></tr>
+      <tr><td><code>archived:false</code></td><td><code>archived:false</code></td><td><strong>Essential</strong> — always include</td></tr>
+      <tr><td><code>-fork:true</code></td><td><code>-fork:true</code></td><td>Exclure les forks pour projets originaux</td></tr>
+      <tr><td><code>license:</code></td><td><code>license:mit</code></td><td>Projets open source sérieux</td></tr>
+      <tr><td><code>user:</code> / <code>org:</code></td><td><code>org:huggingface</code></td><td>Cibler une org — OR implicite si répété</td></tr>
+      <tr><td><code>good-first-issues:>n</code></td><td><code>good-first-issues:>3</code></td><td>Signal de communauté active</td></tr>
+    </table>
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ pushed:</strong> includes commits on <em>all</em> branches, even abandoned ones. Combine with <code>stars:>N</code> to better approximate a truly active repo.
+  </div>
+
+  <h3>Repos query examples</h3>
+  <code class="query">"machine learning" OR "deep learning" language:python stars:>50 pushed:>2024-01-01 archived:false -fork:true</code>
+  <code class="query">topic:kubernetes language:go stars:>100 pushed:>2024-01-01 archived:false</code>
+  <code class="query">LangChain in:readme language:python stars:>5 pushed:>2024-01-01 archived:false</code>
+  <code class="query">language:rust stars:>200 forks:>50 license:mit pushed:>2024-01-01 archived:false -fork:true</code>
+
+  <h3>Repos → Users strategy</h3>
+  <p>The real power: find relevant repos → extract their owners and contributors → enrich their profiles. This bypasses the key limitation of user search, which cannot filter by specific framework or library.</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section id="booleens">
+  <h2>4. Boolean Logic</h2>
+
+  <div class="table-wrap">
+    <table>
+      <tr><th>Operator</th><th>Syntax</th><th>Works on</th><th>Example</th></tr>
+      <tr>
+        <td>Implicit AND</td>
+        <td>Espace entre qualifiers différents</td>
+        <td>All qualifiers</td>
+        <td><code>language:python location:France</code></td>
+      </tr>
+      <tr>
+        <td>Implicit OR</td>
+        <td>Repeat the same qualifier</td>
+        <td>All qualifiers</td>
+        <td><code>location:Paris location:Lyon</code></td>
+      </tr>
+      <tr>
+        <td>Explicit OR</td>
+        <td><code>OR</code></td>
+        <td>Free keywords only</td>
+        <td><code>"frontend" OR "front-end"</code></td>
+      </tr>
+      <tr>
+        <td>Explicit NOT</td>
+        <td><code>NOT</code></td>
+        <td>Free keywords only</td>
+        <td><code>"developer" NOT "junior"</code></td>
+      </tr>
+      <tr>
+        <td>NOT (dash)</td>
+        <td><code>-qualifier:valeur</code></td>
+        <td>All qualifiers</td>
+        <td><code>-language:php</code></td>
+      </tr>
+    </table>
+  </div>
+
+  <h3>Combination examples</h3>
+  <code class="query">// Implicit AND between different qualifiers
+language:python location:France repos:>10 followers:>50</code>
+  <code class="query">// Implicit OR — same qualifier repeated
+location:Paris location:Lyon location:Bordeaux location:Nantes</code>
+  <code class="query">// Combining keywords and qualifiers
+"machine learning engineer" location:Paris location:"Île-de-France" language:python followers:>20</code>
+  <code class="query">// Exclusions
+location:France -language:php -language:java NOT "junior" NOT "intern"</code>
+
+  <div class="warn">
+    <strong>⚠️ Not allowed:</strong> OR between different qualifiers (<code>location:Paris OR language:python</code>) and AND between same qualifiers (<code>language:python AND language:js</code>) do not work. Workaround: two separate queries.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section id="limites">
+  <h2>5. Limits & Workarounds</h2>
+
+  <h3>Beyond 1,000 results — time-based pagination</h3>
+  <p>When a query returns exactly 1,000 results, there are more. Split using <code>created:</code>:</p>
+  <code class="query">"python developer" location:France created:<2018-01-01
+"python developer" location:France created:2018-01-01..2020-12-31
+"python developer" location:France created:2021-01-01..2022-12-31
+"python developer" location:France created:>2023-01-01</code>
+
+  <h3>AND between languages — intersection technique</h3>
+  <p>Impossible in one query. Simulate via intersection:</p>
+  <code class="query">Query 1 : language:python location:France  → list_A
+Query 2 : language:typescript location:France  → list_B
+Intersection A ∩ B  → profiles present in both lists</code>
+
+  <div class="warn">
+    <strong>⚠️</strong> This technique gives an approximation — a versatile developer may only appear in one list if their repos in the other language are a minority.
+  </div>
+
+  <h3>Exclude noise languages</h3>
+  <code class="query">machine learning language:python -language:"jupyter notebook" -language:html stars:>20</code>
+
+  <h3>Web interface vs REST API</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th></th><th>Web interface</th><th>REST API</th></tr>
+      <tr><td>Results per page</td><td>30</td><td>100 avec <code>per_page=100</code></td></tr>
+      <tr><td>Rate limit</td><td>Session-limited</td><td>30 req/min (no token), 5,000/h (with token)</td></tr>
+      <tr><td>Parallelism</td><td>No</td><td>Yes — multiple tokens</td></tr>
+      <tr><td>Post-filtering</td><td>No</td><td>Yes — filterable JSON results</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<section id="cheatsheet">
+  <h2>6. Cheat Sheet — Complete Reference</h2>
+
+  <!-- ══════════════════════════════════════════════════════
+       BLOC 1 : MOTS-CLÉS vs QUALIFIERS
+  ══════════════════════════════════════════════════════ -->
+  <h3>Keywords vs Qualifiers — the fundamental difference</h3>
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th></th>
+        <th>Free keywords</th>
+        <th>Qualifiers <code>qualifier:value</code></th>
+      </tr>
+      <tr>
+        <td><strong>What it is</strong></td>
+        <td>Terms typed without special syntax, with or without quotes</td>
+        <td><code>qualifier:value</code> syntax targeting a specific field</td>
+      </tr>
+      <tr>
+        <td><strong>Where it searches — Users</strong></td>
+        <td>Username · display name · public email (local part) · bio</td>
+        <td>One specific field only (e.g. <code>language:</code> → primary language)</td>
+      </tr>
+      <tr>
+        <td><strong>Where it searches — Repos</strong></td>
+        <td>Name · description · topics (default) — changeable with <code>in:</code></td>
+        <td>One specific attribute only (e.g. <code>stars:</code> → star count)</td>
+      </tr>
+      <tr>
+        <td><strong>AND</strong></td>
+        <td>Juxtapose: <code>"backend" "python"</code></td>
+        <td>Juxtapose different qualifiers: <code>language:python location:France</code></td>
+      </tr>
+      <tr>
+        <td><strong>OR</strong></td>
+        <td>Keyword <code>OR</code> keyword: <code>"frontend" OR "front-end"</code> (max 5 operators)</td>
+        <td>Repeat the same qualifier: <code>location:Paris location:Lyon</code></td>
+      </tr>
+      <tr>
+        <td><strong>NOT / Exclude</strong></td>
+        <td>Keyword <code>NOT</code> keyword: <code>"developer" NOT "junior"</code></td>
+        <td>Prefix with <code>-</code>: <code>-language:php</code></td>
+      </tr>
+      <tr>
+        <td><strong>⛔ What doesn't work</strong></td>
+        <td><code>OR</code>/<code>NOT</code> do not work on qualifiers</td>
+        <td>Explicit <code>OR</code>/<code>AND</code> do not work between qualifiers</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       BLOC 2 : LOGIQUE MOTS-CLÉS
+  ══════════════════════════════════════════════════════ -->
+  <h3>Logic — keywords (Users &amp; Repos)</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Syntax</th><th>Behavior</th><th>Example</th></tr>
+      <tr>
+        <td><code>mot</code></td>
+        <td>Single word — searches the term in default fields</td>
+        <td><code>developer</code></td>
+      </tr>
+      <tr>
+        <td><code>"expression exacte"</code></td>
+        <td>Words must appear in this exact order</td>
+        <td><code>"machine learning engineer"</code></td>
+      </tr>
+      <tr>
+        <td><code>"mot1" "mot2"</code></td>
+        <td>Implicit AND — both expressions must be present</td>
+        <td><code>"backend" "python"</code></td>
+      </tr>
+      <tr>
+        <td><code>"A" OR "B"</code></td>
+        <td>Explicit OR — either one is enough. Max 5 OR/NOT operators per query.</td>
+        <td><code>"frontend" OR "front-end" OR "ui developer"</code></td>
+      </tr>
+      <tr>
+        <td><code>"A" NOT "B"</code></td>
+        <td>Explicit NOT — excludes B from all searched fields</td>
+        <td><code>"developer" NOT "junior" NOT "intern"</code></td>
+      </tr>
+      <tr>
+        <td><code>mot in:champ</code></td>
+        <td>Restricts search to a specific field (users: login/name/email — repos: name/description/topics/readme)</td>
+        <td><code>python in:login</code> · <code>LangChain in:readme</code></td>
+      </tr>
+      <tr>
+        <td><code>"A" OR "B" in:champ</code></td>
+        <td>OR between keywords + targeting a specific field</td>
+        <td><code>"llm" OR "rag" in:name,description</code></td>
+      </tr>
+    </table>
+  </div>
+  <div class="warn"><strong>⚠️ Reminder:</strong> Explicit <code>OR</code> and <code>NOT</code> only work between keywords. They do not apply to qualifiers.</div>
+
+  <!-- ══════════════════════════════════════════════════════
+       BLOC 3 : LOGIQUE QUALIFIERS
+  ══════════════════════════════════════════════════════ -->
+  <h3>Logic — qualifiers (Users &amp; Repos)</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Rule</th><th>How to</th><th>Example</th><th>Result</th></tr>
+      <tr>
+        <td><strong>AND</strong></td>
+        <td>Juxtapose different qualifiers</td>
+        <td><code>language:python location:France followers:>20</code></td>
+        <td>Python AND France AND 20+ followers — all required</td>
+      </tr>
+      <tr>
+        <td><strong>OR</strong></td>
+        <td>Repeat the same qualifier</td>
+        <td><code>location:Paris location:Lyon location:Bordeaux</code></td>
+        <td>Paris OR Lyon OR Bordeaux</td>
+      </tr>
+      <tr>
+        <td><strong>NOT / Exclude</strong></td>
+        <td>Prefix with <code>-</code></td>
+        <td><code>-language:php -language:"jupyter notebook"</code></td>
+        <td>Excludes PHP and Jupyter Notebook</td>
+      </tr>
+      <tr>
+        <td><strong>Range numérique</strong></td>
+        <td><code>qualifier:min..max</code></td>
+        <td><code>stars:50..500</code> · <code>followers:20..200</code></td>
+        <td>Inclusive range</td>
+      </tr>
+      <tr>
+        <td><strong>Minimum</strong></td>
+        <td><code>qualifier:>valeur</code></td>
+        <td><code>stars:>100</code></td>
+        <td>Strictly greater than 100</td>
+      </tr>
+      <tr>
+        <td><strong>Maximum</strong></td>
+        <td><code>qualifier:&lt;valeur</code></td>
+        <td><code>repos:&lt;=50</code></td>
+        <td>Less than or equal to 50</td>
+      </tr>
+      <tr>
+        <td><strong>Date range</strong></td>
+        <td><code>qualifier:YYYY-MM-DD..YYYY-MM-DD</code></td>
+        <td><code>created:2020-01-01..2023-12-31</code></td>
+        <td>Specific period (ISO 8601 format)</td>
+      </tr>
+      <tr>
+        <td><strong>⛔ Interdit</strong></td>
+        <td>OR between different qualifiers</td>
+        <td><code>location:Paris OR language:python</code></td>
+        <td>Doesn't work → 2 separate queries</td>
+      </tr>
+      <tr>
+        <td><strong>⛔ Interdit</strong></td>
+        <td>AND between same qualifiers</td>
+        <td><code>language:python AND language:go</code></td>
+        <td>Doesn't work → intersect 2 lists</td>
+      </tr>
+      <tr>
+        <td><strong>⛔ Interdit</strong></td>
+        <td>Parentheses</td>
+        <td><code>(language:python OR language:go) AND stars:>100</code></td>
+        <td>Not supported → rewrite with implicit logic</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       BLOC 4 : QUALIFIERS USERS
+  ══════════════════════════════════════════════════════ -->
+  <h3>Qualifiers — Users Search</h3>
+  <p style="font-size:13px;color:#57606a;margin-bottom:10px">Each targets a specific GitHub profile field. Different qualifiers = mandatory AND. Same qualifier repeated = implicit OR.</p>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Qualifier</th><th>Targeted field</th><th>Syntax</th><th>Logic</th></tr>
+      <tr><td><code>type:</code></td><td>Account type</td><td><code>type:user</code> · <code>type:org</code></td><td>Fixed AND</td></tr>
+      <tr><td><code>language:</code></td><td>Primary language of public repos</td><td><code>language:python</code> · <code>language:python language:go</code></td><td>OR if repeated</td></tr>
+      <tr><td><code>location:</code></td><td>Champ location du profil (déclaratif, non normalisé)</td><td><code>location:Paris</code> · <code>location:"Île-de-France"</code></td><td>OR if repeated</td></tr>
+      <tr><td><code>followers:</code></td><td>Number of followers</td><td><code>followers:>50</code> · <code>followers:20..200</code></td><td>Fixed AND — ranges</td></tr>
+      <tr><td><code>repos:</code></td><td>Number of public repos (forks included)</td><td><code>repos:>10</code> · <code>repos:5..50</code></td><td>Fixed AND — ranges</td></tr>
+      <tr><td><code>created:</code></td><td>Account creation date</td><td><code>created:>2019-01-01</code> · <code>created:2018..2022</code></td><td>Fixed AND</td></tr>
+      <tr><td><code>in:login</code></td><td>Username only</td><td><code>python in:login</code></td><td>Keyword + in:</td></tr>
+      <tr><td><code>in:name</code></td><td>Display name only</td><td><code>Sophie in:name</code></td><td>Keyword + in:</td></tr>
+      <tr><td><code>in:email</code></td><td>Public email — local part only (before @)</td><td><code>dataiku in:email</code></td><td>Keyword + in:</td></tr>
+      <tr><td><code>is:sponsorable</code></td><td>Active GitHub Sponsors profile</td><td><code>is:sponsorable</code></td><td>Binary</td></tr>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       BLOC 5 : QUALIFIERS REPOS
+  ══════════════════════════════════════════════════════ -->
+  <h3>Qualifiers — Repos Search</h3>
+  <p style="font-size:13px;color:#57606a;margin-bottom:10px">Each targets a specific repository attribute. Different qualifiers = mandatory AND. Same qualifier repeated = implicit OR.</p>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Qualifier</th><th>Attribut ciblé</th><th>Syntaxe</th><th>Logique</th></tr>
+      <tr><td><code>language:</code></td><td>Primary language (GitHub Linguist)</td><td><code>language:python language:go</code></td><td>OR if repeated</td></tr>
+      <tr><td><code>topic:</code></td><td>Exact GitHub topic assigned to the repo</td><td><code>topic:machine-learning topic:llm</code></td><td>OR if repeated — exact match</td></tr>
+      <tr><td><code>stars:</code></td><td>Number of stars</td><td><code>stars:>100</code> · <code>stars:50..500</code></td><td>Fixed AND — ranges</td></tr>
+      <tr><td><code>forks:</code></td><td>Number of forks</td><td><code>forks:>20</code></td><td>Fixed AND — community proxy</td></tr>
+      <tr><td><code>pushed:</code></td><td>Last commit — all branches</td><td><code>pushed:>2024-01-01</code></td><td>Fixed AND — ⚠️ includes abandoned branches</td></tr>
+      <tr><td><code>created:</code></td><td>Repo creation date</td><td><code>created:>2022-01-01</code></td><td>Fixed AND — useful for time-based pagination</td></tr>
+      <tr><td><code>archived:false</code></td><td>Non-archived repos only</td><td><code>archived:false</code></td><td><strong>Essential</strong> — always include</td></tr>
+      <tr><td><code>-fork:true</code></td><td>Exclude forks</td><td><code>-fork:true</code></td><td>Original projects only</td></tr>
+      <tr><td><code>fork:only</code></td><td>Forks only</td><td><code>fork:only</code></td><td>Devs contributing to existing projects</td></tr>
+      <tr><td><code>license:</code></td><td>License type</td><td><code>license:mit</code> · <code>license:apache-2.0</code> · <code>license:gpl-3.0</code></td><td>Fixed AND</td></tr>
+      <tr><td><code>org:</code> / <code>user:</code></td><td>Repos from a specific org or account</td><td><code>org:huggingface</code> · <code>user:torvalds</code></td><td>OR if repeated</td></tr>
+      <tr><td><code>good-first-issues:>n</code></td><td>"good first issue" issues — active community signal</td><td><code>good-first-issues:>3</code></td><td>Fixed AND</td></tr>
+      <tr><td><code>size:</code></td><td>Repo size in kilobytes</td><td><code>size:>1</code> · <code>size:100..5000</code></td><td>Fixed AND</td></tr>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       BLOC 6 : LIMITES
+  ══════════════════════════════════════════════════════ -->
+  <h3>GitHub Search Limits</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Limit</th><th>Value</th><th>Workaround</th></tr>
+      <tr><td>Max results per query</td><td>1,000 (10 pages × 100)</td><td>Split into date ranges with <code>created:</code></td></tr>
+      <tr><td>Max query length</td><td>256 characters</td><td>Create multiple complementary queries</td></tr>
+      <tr><td>Explicit boolean operators</td><td>5 max (AND/OR/NOT)</td><td>Batches of 4 OR keywords max</td></tr>
+      <tr><td>Parentheses</td><td>Not supported</td><td>Rewrite using implicit logic</td></tr>
+      <tr><td>OR between different qualifiers</td><td>Not supported</td><td>Two separate queries + union of results</td></tr>
+      <tr><td>AND between same qualifiers</td><td>Not supported</td><td>Two separate queries + intersection of results</td></tr>
+      <tr><td><code>location:</code> field</td><td>Declarative and not normalized</td><td>Multiply variants: city, region, postal code, country…</td></tr>
+      <tr><td>Private repos</td><td>Never returned</td><td>—</td></tr>
+      <tr><td>Number of contributors</td><td>No native qualifier</td><td>Proxy: <code>forks:>n</code> + <code>good-first-issues:>n</code></td></tr>
+      <tr><td>Last commit on default branch</td><td>No native qualifier</td><td><code>pushed:</code> (all branches) is the only option</td></tr>
+      <tr><td>Wildcard / Regex</td><td>Non supportés</td><td>List variants explicitly</td></tr>
+      <tr><td>API rate limit without token</td><td>10 req/min</td><td>Use a GitHub Bearer token</td></tr>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       BLOC 7 : EXEMPLES
+  ══════════════════════════════════════════════════════ -->
+  <h3>Complete query examples</h3>
+  <code class="query">// Users — ML Engineer Python in Paris
+type:user "ML engineer" language:python location:Paris location:"Île-de-France" followers:>20 repos:>5 NOT "junior"</code>
+  <code class="query">// Users — Tech Lead or Manager in France, multiple OR variants
+type:user "tech lead" OR "engineering manager" location:France language:typescript repos:>5</code>
+  <code class="query">// Repos — Active ML Python, original projects only
+"machine learning" OR "deep learning" language:python stars:>50 pushed:>2024-01-01 archived:false -fork:true</code>
+  <code class="query">// Repos — LLM searched in README (framework not adopted as topic)
+"llm" OR "large language model" in:name,description,readme language:python pushed:>2024-01-01 archived:false</code>
+  <code class="query">// Beyond 1,000 results — time-based pagination on created:
+"python developer" location:France created:<2018-01-01
+"python developer" location:France created:2018-01-01..2020-12-31
+"python developer" location:France created:>2021-01-01</code>
+</section>
+
+</body>
+</html>
